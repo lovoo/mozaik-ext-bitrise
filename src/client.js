@@ -1,4 +1,3 @@
-import Promise from 'bluebird';
 import process from 'process';
 import fetch from 'node-fetch';
 
