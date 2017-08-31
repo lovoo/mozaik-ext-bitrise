@@ -1,0 +1,20 @@
+.bitrise__build-history {
+    .commit {
+        color: $main-txt-color;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &__item {
+        &--cancelled {
+            background-color: $unknown-color;
+        }
+        &--success {
+            background-color: $success-color;
+        }
+        &--failed {
+            background-color: $failure-color;
+        }
+    }
+}
