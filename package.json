@@ -1,12 +1,14 @@
 {
     "name": "mozaik-ext-bitrise",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Mozaik Bitrise Extension",
     "main": "./src/components/index.js",
     "repository": "git@github.com:lovoo/mozaik-ext-bitrise.git",
     "author": "André Leubner <leubner.andre@gmail.com>",
     "license": "MIT",
-    "engines" : { "node" : ">=6.6.0" },
+    "engines": {
+        "node": ">=6.6.0"
+    },
     "homepage": "https://github.com/lovoo/mozaik-ext-bitrise",
     "peerDependencies": {
         "mozaik": "1.4.4",
