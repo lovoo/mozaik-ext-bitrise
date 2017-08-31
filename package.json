@@ -30,6 +30,7 @@
         "babelify": "^7.3.0",
         "bluebird": "^3.5.0",
         "chalk": "^2.1.0",
+        "moment": "^2.18.1",
         "react": "^15.6.1",
         "react-mixin": "^3.1.0",
         "reflux": "^6.4.1"
