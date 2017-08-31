@@ -1,6 +1,6 @@
 {
     "name": "mozaik-ext-bitrise",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Mozaik Bitrise Extension",
     "main": "./src/components/index.js",
     "repository": "git@github.com:lovoo/mozaik-ext-bitrise.git",
