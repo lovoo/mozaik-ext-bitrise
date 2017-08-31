@@ -16,7 +16,7 @@ class BuildHistoryHeader extends Component {
         };
     }
 
-    getApiRequest () {
+    getApiRequest() {
         const { slug } = this.props;
 
         return {
@@ -27,11 +27,11 @@ class BuildHistoryHeader extends Component {
         };
     }
 
-    onApiData ({data}) {
+    onApiData({data}) {
         this.setState({ app: data });
     }
 
-    render () {
+    render() {
         return (
             <div className="widget__header">
                 <span className="widget__header__subject">{this.state.app.title}</span> build history

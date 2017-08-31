@@ -40,7 +40,7 @@ class BuildHistory extends Component {
                     {buildNodes}
                 </div>
             </div>
-        )
+        );
     }
 }
 BuildHistory.displayName = 'BuildHistory';

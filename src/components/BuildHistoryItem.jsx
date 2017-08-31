@@ -1,5 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import moment                          from 'moment';
+import moment from 'moment';
+
+const buildStatus = {
+    running: 0,
+    success: 1,
+    failed: 2,
+    cancelled: 3
+};
 
 class BuildHistoryItem extends Component {
     renderTime(build) {
@@ -8,33 +15,46 @@ class BuildHistoryItem extends Component {
 
     getBuildStateClass({status}) {
         switch (status) {
-            case 0:
+            case buildStatus.running:
                 return 'running';
-            case 1:
+            case buildStatus.success:
                 return 'success';
-            case 2:
+            case buildStatus.failed:
                 return 'failed';
-            case 3:
+            case buildStatus.cancelled:
                 return 'cancelled';
         }
+    }
+
+    getBuildPercent({status, estimation, triggered_at}) {
+        if (status !== buildStatus.running) {
+            return;
+        }
+
+        const now = new Date();
+        const start = Date.parse(triggered_at);
+
+        return Math.min((now - start ) / estimation, .95);
     }
 
     render() {
         const { build } = this.props;
         const cssClasses = `list__item bitrise__build-history__item bitrise__build-history__item--${this.getBuildStateClass(build)}`;
+        const barPercent = `${(this.getBuildPercent(build) * 100)}%`;
+        const gradientString = `linear-gradient(to right, rgba(0,0,0,.3) 0%, rgba(0,0,0,.3) ${barPercent}, transparent ${barPercent}, transparent 100%)`;
+        const buildStyle = build.status === buildStatus.running ? {background:  gradientString} : undefined;
+        const iconClass = build.status === buildStatus.running ? 'fa fa-cog fa-spin' : 'fa fa-clock-o';
 
-        return (
-            <div className={cssClasses}>
-                {build.triggered_workflow} #{build.build_number}
-                <div className="commit">{build.commit_message}</div>
-                <div>
-                    <time className="list__item__time">
-                        <i className="fa fa-clock-o" />&nbsp;
-                        {this.renderTime(build)}
-                    </time>
-                </div>
+        return (<div className={cssClasses} style={buildStyle}>
+            {build.triggered_workflow} #{build.build_number}
+            <div className="commit">{build.commit_message}</div>
+            <div>
+                <time className="list__item__time">
+                    <i className={iconClass} />&nbsp;
+                    {this.renderTime(build)}
+                </time>
             </div>
-        );
+        </div>);
     }
 }
 

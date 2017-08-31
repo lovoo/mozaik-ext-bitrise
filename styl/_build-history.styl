@@ -7,14 +7,17 @@
     }
 
     &__item {
+        &--running {
+            border-left: 20px solid $unknown-color;
+        }
         &--cancelled {
-            background-color: $unknown-color;
+            border-left: 20px solid $warning-color;
         }
         &--success {
-            background-color: $success-color;
+            border-left: 20px solid $success-color;
         }
         &--failed {
-            background-color: $failure-color;
+            border-left: 20px solid $failure-color;
         }
     }
 }

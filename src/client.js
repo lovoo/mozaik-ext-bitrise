@@ -23,11 +23,35 @@ function bitriseApiRequest(path) {
     });
 }
 
+/**
+ * adds a estimation about the build time
+ */
+function addEstimation(builds) {
+    const estimatedWorkflowTime = {};
+
+    for (const build of builds) {
+        if ( build.status === 1 && !estimatedWorkflowTime[build.triggered_workflow]) {
+            const start = Date.parse(build.triggered_at);
+            const end = Date.parse(build.finished_at);
+
+            estimatedWorkflowTime[build.triggered_workflow] = end - start;
+        }
+    }
+
+    return builds.map((build) => {
+        if (build.status === 0 && build.is_on_hold === false) {
+            return Object.assign({}, build, {estimation: estimatedWorkflowTime[build.triggered_workflow]});
+        }
+
+        return build;
+    });
+}
+
 function getMe() {
     return bitriseApiRequest('me').then(res => res.json());
 }
 
-function getApp ({slug}) {
+function getApp({slug}) {
     return bitriseApiRequest(`apps/${slug}`).then(res => res.json());
 }
 
@@ -36,7 +60,7 @@ function getBuilds({ slug , limit = 10}) {
         return res.json();
     }).then((res) => {
         return res.data;
-    });
+    }).then(addEstimation);
 }
 
 const client = mozaik => {
@@ -46,8 +70,8 @@ const client = mozaik => {
         getApp,
         getMe,
         getBuilds
-    }
-}
+    };
+};
 
 // TODO per workflow helper
 /*for (build of res.data) {
