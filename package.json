@@ -32,6 +32,7 @@
         "chalk": "^2.1.0",
         "convict": "^4.0.0",
         "moment": "^2.18.1",
+        "node-fetch": "^1.7.2",
         "react-mixin": "^3.1.0",
         "reflux": "^6.4.1"
     },
