@@ -5,7 +5,7 @@
     "main": "./src/components/index.js",
     "repository": "git@github.com:lovoo/mozaik-ext-bitrise.git",
     "author": "André Leubner <leubner.andre@gmail.com>",
-    "license": "MIT",
+    "license": "BSD-3-Clause",
     "engines": {
         "node": ">=4.0.0"
     },
