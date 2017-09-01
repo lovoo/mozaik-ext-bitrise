@@ -37,6 +37,10 @@ class BuildHistoryItem extends Component {
         return Math.min((now - start ) / estimation, .95);
     }
 
+    redirectToBuild() {
+        window.open(`https://www.bitrise.io/build/${this}`, '_blank');
+    }
+
     render() {
         const { build } = this.props;
         const cssClasses = `list__item bitrise__build-history__item bitrise__build-history__item--${this.getBuildStateClass(build)}`;
@@ -44,8 +48,9 @@ class BuildHistoryItem extends Component {
         const gradientString = `linear-gradient(to right, rgba(0,0,0,.3) 0%, rgba(0,0,0,.3) ${barPercent}, transparent ${barPercent}, transparent 100%)`;
         const buildStyle = build.status === buildStatus.running ? {background:  gradientString} : undefined;
         const iconClass = build.status === buildStatus.running ? 'fa fa-cog fa-spin' : 'fa fa-clock-o';
+        const onClickHandler = this.redirectToBuild.bind(build.slug);
 
-        return (<div className={cssClasses} style={buildStyle}>
+        return (<div className={cssClasses} style={buildStyle} onClick={onClickHandler}>
             {build.triggered_workflow} #{build.build_number}
             <div className="commit">{build.commit_message}</div>
             <div>
@@ -67,7 +72,8 @@ BuildHistoryItem.propTypes = {
         finished_at: PropTypes.string.isRequired,
         commit:      PropTypes.shape({
             message: PropTypes.string.isRequired
-        })
+        }),
+        slug:        PropTypes.string.isRequired
     }).isRequired
 };
 
