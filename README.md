@@ -54,7 +54,7 @@ key          | required | description
 ```
 
 [license-image]: https://img.shields.io/github/license/lovoo/mozaik-ext-bitrise.svg?style=flat-square
-[license-url]: https://github.com/lovoo/mozaik-ext-bitrise/blob/master/LICENSE.md
+[license-url]: https://github.com/lovoo/mozaik-ext-bitrise/blob/master/LICENSE
 [npm-image]: https://img.shields.io/npm/v/mozaik-ext-bitrise.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/mozaik-ext-bitrise
 [widget-count-image]: https://img.shields.io/badge/widgets-x1-green.svg?style=flat-square
