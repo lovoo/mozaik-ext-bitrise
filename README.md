@@ -32,7 +32,7 @@ key             | env key                         | required | description
 
 ### Bitrise Build history
 
-![bitrise build history](https://github.com/lovoo/mozaik-ext-bitrise/blob/master/preview/bitrise.build_history.png)
+![bitrise build history](https://raw.githubusercontent.com/lovoo/mozaik-ext-bitrise/master/preview/bitrise.build_history.png)
 
 > Display bitrise repo build history
 
