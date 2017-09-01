@@ -37,8 +37,8 @@ class BuildHistoryItem extends Component {
         return Math.min((now - start ) / estimation, .95);
     }
 
-    redirectToBuild(slug) {
-        window.location = `https://www.bitrise.io/build/${this}`;
+    redirectToBuild() {
+        window.open(`https://www.bitrise.io/build/${this}`, _blank);
     }
 
     render() {
