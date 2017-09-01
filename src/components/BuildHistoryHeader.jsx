@@ -41,6 +41,10 @@ class BuildHistoryHeader extends Component {
     }
 }
 
+BuildHistoryHeader.propTypes = {
+    slug: PropTypes.string.isRequired
+};
+
 reactMixin(BuildHistoryHeader.prototype, ListenerMixin);
 reactMixin(BuildHistoryHeader.prototype, Mozaik.Mixin.ApiConsumer);
 

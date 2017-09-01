@@ -45,6 +45,11 @@ class BuildHistory extends Component {
 }
 BuildHistory.displayName = 'BuildHistory';
 
+BuildHistory.propTypes = {
+    slug: PropTypes.string.isRequired,
+    limit: PropTypes.number.isRequired
+};
+
 reactMixin(BuildHistory.prototype, ListenerMixin);
 reactMixin(BuildHistory.prototype, Mozaik.Mixin.ApiConsumer);
 
