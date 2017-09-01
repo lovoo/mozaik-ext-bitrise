@@ -38,7 +38,7 @@ class BuildHistoryItem extends Component {
     }
 
     redirectToBuild() {
-        window.open(`https://www.bitrise.io/build/${this}`, _blank);
+        window.open(`https://www.bitrise.io/build/${this}`, '_blank');
     }
 
     render() {
