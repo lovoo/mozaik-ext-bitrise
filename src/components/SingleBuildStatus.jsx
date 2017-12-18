@@ -69,7 +69,7 @@ class SingleBuildStatus extends Component {
             <div className={classList.join(' ')}>
                 <div className="bitrise__job-status__current">
                    Build #{currentBuild.build_number}<br />
-                    <a className="bitrise__job-status__current__status" href={currentBuild.url}>
+                    <a className="bitrise__job-status__current__status" href={`https://www.bitrise.io/build/${currentBuild.slug}`}>
                         {title}&nbsp;<br />
                         <i className={iconClass} />&nbsp;
                         <span className="bitrise__job-status__current__progress-number">
