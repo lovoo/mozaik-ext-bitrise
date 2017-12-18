@@ -66,8 +66,6 @@ function getBuilds({ slug , limit = 10, workflow}) {
         path += `&workflow=${workflow}`;
     }
 
-    console.log(path);
-
     return bitriseApiRequest(path).then((res) => {
         return res.json();
     }).then((res) => {

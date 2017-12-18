@@ -38,8 +38,6 @@ class SingleBuildStatus extends Component {
     render() {
         const { currentBuild, previousBuild } = this.state;
 
-        console.log(currentBuild);
-
         if (!currentBuild) {
             return (<div className="widget__body__colored">{'Build not found'}</div>);
         }
