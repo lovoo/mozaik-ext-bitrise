@@ -56,6 +56,8 @@ key          | required | description
 
 ### Bitrise Single build status
 
+![bitrise.single_build_status](https://raw.githubusercontent.com/lovoo/mozaik-ext-bitrise/master/preview/bitrise.single_build_status.png)
+
 > Display the build status of a single build.
 
 #### parameters
