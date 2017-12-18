@@ -54,6 +54,30 @@ key          | required | description
 }
 ```
 
+### Bitrise Single build status
+
+> Display the build status of a single build.
+
+#### parameters
+
+key          | required | description
+-------------|----------|---------------
+`slug`       | yes      | *app slug*
+`workflow`   | yes      | *workflow id*
+`title`      | no       | *An optional title*
+
+#### usage
+
+```javascript
+{
+    type: 'bitrise.single_build_status',
+    title: 'An optional title',
+    slug: '<app slug>',
+    workflow: '<workflow id>',
+    columns: 1, rows: 1, x: 0, y: 0
+}
+```
+
 [travis-image]: https://img.shields.io/travis/lovoo/mozaik-ext-bitrise.svg?style=flat-square
 [travis-url]: https://travis-ci.org/lovoo/mozaik-ext-bitrise
 [license-image]: https://img.shields.io/github/license/lovoo/mozaik-ext-bitrise.svg?style=flat-square

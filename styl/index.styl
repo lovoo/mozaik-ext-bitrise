@@ -1,1 +1,52 @@
 @import "_build-history.styl";
+@import "_view.styl";
+
+.bitrise__job
+    position relative
+    padding 7px 15px 7px 35px
+
+    &:before
+      content " "
+      display block
+      width  12px
+      height 12px
+      position absolute
+      top  14px
+      left 12px
+      border-radius 100%
+      background-color #000
+
+    &__status
+      position absolute
+      left 15px
+
+    &__number
+      color darken($main-txt-color, 20)
+      margin-right 7px
+
+    &--success
+      &:before
+        background-color $success-color
+
+    &--failure
+      &:before
+        background-color $failure-color
+
+    time
+      font-size 12px
+      display inline-block
+      color darken($main-txt-color, 20)
+
+.widget
+  &__body
+    &__colored
+      display flex
+      width 100%
+      height 100%
+      text-align center
+      & .bitrise
+        &__job-status
+          &__current
+            margin auto
+            color black
+            

@@ -1,0 +1,24 @@
+.bitrise
+  &__view
+    &__job
+      &__build
+        &__status
+          font-size 1.6em
+          &--success
+            color $success-color
+          &--unknown
+            color $unknown-color
+          &--failed
+            color $failure-color
+          &--cancelled
+            color $warning-color
+        &__colored_status
+          font-size 1.6em
+          &--success
+            background-color $success-color
+          &--unknown
+            background-color $unknown-color
+          &--failed
+            background-color $failure-color
+          &--cancelled
+            background-color $warning-color

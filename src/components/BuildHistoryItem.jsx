@@ -1,40 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import moment from 'moment';
 
-const buildStatus = {
-    running: 0,
-    success: 1,
-    failed: 2,
-    cancelled: 3
-};
+import { BuildStatus, getBuildStatus, getBuildProgress} from './util';
 
 class BuildHistoryItem extends Component {
     renderTime(build) {
         return build.finished_at ? moment(build.finished_at).fromNow() : 'running';
-    }
-
-    getBuildStateClass({status}) {
-        switch (status) {
-            case buildStatus.running:
-                return 'running';
-            case buildStatus.success:
-                return 'success';
-            case buildStatus.failed:
-                return 'failed';
-            case buildStatus.cancelled:
-                return 'cancelled';
-        }
-    }
-
-    getBuildPercent({status, estimation, triggered_at}) {
-        if (status !== buildStatus.running) {
-            return;
-        }
-
-        const now = new Date();
-        const start = Date.parse(triggered_at);
-
-        return Math.min((now - start ) / estimation, .95);
     }
 
     redirectToBuild() {
@@ -43,11 +14,11 @@ class BuildHistoryItem extends Component {
 
     render() {
         const { build } = this.props;
-        const cssClasses = `list__item bitrise__build-history__item bitrise__build-history__item--${this.getBuildStateClass(build)}`;
-        const barPercent = `${(this.getBuildPercent(build) * 100)}%`;
+        const cssClasses = `list__item bitrise__build-history__item bitrise__build-history__item--${getBuildStatus(build)}`;
+        const barPercent = `${(getBuildProgress(build) * 100)}%`;
         const gradientString = `linear-gradient(to right, rgba(0,0,0,.3) 0%, rgba(0,0,0,.3) ${barPercent}, transparent ${barPercent}, transparent 100%)`;
-        const buildStyle = build.status === buildStatus.running ? {background:  gradientString} : undefined;
-        const iconClass = build.status === buildStatus.running ? 'fa fa-cog fa-spin' : 'fa fa-clock-o';
+        const buildStyle = build.status === BuildStatus.running ? {background:  gradientString} : undefined;
+        const iconClass = build.status === BuildStatus.running ? 'fa fa-cog fa-spin' : 'fa fa-clock-o';
         const onClickHandler = this.redirectToBuild.bind(build.slug);
 
         return (<div className={cssClasses} style={buildStyle} onClick={onClickHandler}>
