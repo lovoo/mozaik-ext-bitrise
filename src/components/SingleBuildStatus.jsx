@@ -65,6 +65,8 @@ class SingleBuildStatus extends Component {
             width: `${progress}%`
         };
 
+        const time = currentStatus === 'running' ? currentBuild.triggered_at : currentBuild.finished_at;
+
         return (
             <div className={classList.join(' ')}>
                 <div className="bitrise__job-status__current">
@@ -79,7 +81,7 @@ class SingleBuildStatus extends Component {
                     {progress < 100 && <div className="bitrise__job-status__current__progress-bar" style={progressStyle} />}
                     <time className="bitrise__job-status__current__time">
                         <i className="fa fa-clock-o" />&nbsp;
-                        {moment(currentBuild.triggered_at).fromNow()}
+                        {moment(time).fromNow()}
                     </time>
                 </div>
             </div>
