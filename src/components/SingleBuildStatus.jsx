@@ -52,35 +52,29 @@ class SingleBuildStatus extends Component {
         ];
 
         var iconClass;
-        if (currentStatus === 'success') { iconClass = 'fa fa-check'; };
-        if (currentStatus === 'failed') { iconClass = 'fa fa-close'; };
-        if (currentStatus === 'cancelled') { iconClass = 'fa fa-meh-o'; };
-        if (currentStatus === 'running') { iconClass = 'fa fa-spin fa-cog'; };
+        var statusString;
+        if (currentStatus === 'success') { iconClass = 'fa fa-check'; statusString = 'finished'; };
+        if (currentStatus === 'failed') { iconClass = 'fa fa-close'; statusString = 'failed'; };
+        if (currentStatus === 'cancelled') { iconClass = 'fa fa-meh-o'; statusString = 'cacnelled'; };
+        if (currentStatus === 'running') { iconClass = 'fa fa-spin fa-cog'; statusString = 'started'; };
 
         const progress = currentStatus == 'running' ? getBuildProgress(currentBuild) * 100 : 100;
-
-        const progressStyle = {
-            border: '1px solid #000',
-            backgroundColor: 'red',
-            width: `${progress}%`
-        };
-
         const time = currentStatus === 'running' ? currentBuild.triggered_at : currentBuild.finished_at;
 
+        const gradientString = `linear-gradient(to right, rgba(0,0,0,.5) 0%, rgba(0,0,0,.5) ${progress}%, transparent ${progress}%, transparent 100%)`;
+        const progressDiv = currentStatus === 'running' ? (<div style={{position: 'absolute', left: 0, top: 0, right: 0, bottom: 0, background: gradientString}}/>) : null;
+        
         return (
             <div className={classList.join(' ')}>
+                {progressDiv}
                 <div className="bitrise__job-status__current">
-                   Build #{currentBuild.build_number}<br />
+                    Build #{currentBuild.build_number}<br />
                     <a className="bitrise__job-status__current__status" href={`https://www.bitrise.io/build/${currentBuild.slug}`}>
                         {title}&nbsp;<br />
                         <i className={iconClass} />&nbsp;
-                        <span className="bitrise__job-status__current__progress-number">
-                            {progress < 100 && `${Math.round(progress)}%`}
-                        </span>
                     </a>
-                    {progress < 100 && <div className="bitrise__job-status__current__progress-bar" style={progressStyle} />}
-                    <time className="bitrise__job-status__current__time">
-                        <i className="fa fa-clock-o" />&nbsp;
+                    <time className="bitrise__job-status__current__time">    
+                        {statusString}&nbsp;
                         {moment(time).fromNow()}
                     </time>
                 </div>
