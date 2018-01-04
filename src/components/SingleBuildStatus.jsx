@@ -55,7 +55,7 @@ class SingleBuildStatus extends Component {
         var statusString;
         if (currentStatus === 'success') { iconClass = 'fa fa-check'; statusString = 'finished'; };
         if (currentStatus === 'failed') { iconClass = 'fa fa-close'; statusString = 'failed'; };
-        if (currentStatus === 'cancelled') { iconClass = 'fa fa-meh-o'; statusString = 'cacnelled'; };
+        if (currentStatus === 'cancelled') { iconClass = 'fa fa-meh-o'; statusString = 'cancelled'; };
         if (currentStatus === 'running') { iconClass = 'fa fa-spin fa-cog'; statusString = 'started'; };
 
         const progress = currentStatus == 'running' ? getBuildProgress(currentBuild) * 100 : 100;
