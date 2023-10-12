@@ -73,13 +73,28 @@ function getBuilds({ slug , limit = 10, workflow}) {
     }).then(addEstimation);
 }
 
+function getPipelines({ slug , limit = 10, pipeline}) {
+
+    var path = `apps/${slug}/pipelines?limit=${limit}`;
+    if (pipeline) {
+        path += `&pipeline=${pipeline}`;
+    }
+
+    return bitriseApiRequest(path).then((res) => {
+        return res.json();
+    }).then((res) => {
+        return res.data;
+    }).then(addEstimation);
+}
+
 const client = mozaik => {
     mozaik.loadApiConfig(config);
 
     return {
         getApp,
         getMe,
-        getBuilds
+        getBuilds,
+        getPipelines
     };
 };
 
